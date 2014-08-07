@@ -7,11 +7,6 @@ import com.google.gwt.core.client.JavaScriptException;
 import com.google.gwt.core.client.ScriptInjector;
 import com.google.gwt.dom.client.CanvasElement;
 import com.google.gwt.dom.client.ImageElement;
-import com.google.gwt.event.dom.client.ErrorEvent;
-import com.google.gwt.event.dom.client.ErrorHandler;
-import com.google.gwt.event.dom.client.LoadEvent;
-import com.google.gwt.event.dom.client.LoadHandler;
-import com.google.gwt.user.client.ui.Image;
 
 
 public class Qr
@@ -60,36 +55,6 @@ public class Qr
         qrcode.result = qrcode.process(context);
         return qrcode.result;
     }-*/;
-
-    public void decode(String src, final Callback<String, Exception> callback)
-    {
-        final Image image = new Image();
-        image.addErrorHandler(new ErrorHandler()
-        {
-            @Override
-            public void onError(ErrorEvent event)
-            {
-                callback.onFailure(new Exception("Error loading image"));
-            }
-        });
-        image.addLoadHandler(new LoadHandler()
-        {
-            @Override
-            public void onLoad(LoadEvent event)
-            {
-                try
-                {
-                    String result = decode(ImageElement.as(image.getElement()));
-                    callback.onSuccess(result);
-                }
-                catch (JavaScriptException e)
-                {
-                    callback.onFailure(e);
-                }
-            }
-        });
-        image.setUrl(src);
-    }
 
     protected void load(final Callback<Qr, Exception> callback)
     {
