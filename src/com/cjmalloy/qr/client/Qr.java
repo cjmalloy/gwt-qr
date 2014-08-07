@@ -16,7 +16,7 @@ import com.google.gwt.user.client.ui.Image;
 
 public class Qr
 {
-    private static final String QR_JS_SCRIPT = GWT.getModuleBaseForStaticFiles() + "bitcoinjs.js";
+    private static final String QR_JS_SCRIPT = GWT.getModuleBaseForStaticFiles() + "jsqrcode.js";
 
     private static Qr instance = null;
 
